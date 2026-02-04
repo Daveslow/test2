@@ -28,10 +28,10 @@
         header {
             background: linear-gradient(135deg, var(--chile-red), #c0392b);
             color: white;
-            padding: 4rem 2rem;
+            padding: 4rem 1rem;
             text-align: center;
         }
-        header h1 { margin: 0; font-size: 2.5rem; }
+        header h1 { margin: 0; font-size: 2.5rem; line-height: 1.2; }
         header p { opacity: 0.9; font-size: 1.2rem; margin-top: 10px; }
 
         nav {
@@ -45,11 +45,12 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         nav a {
-            margin: 0 15px;
+            margin: 0 10px;
             text-decoration: none;
             color: var(--primary);
             font-weight: 600;
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
         nav a:hover { color: var(--chile-red); }
 
@@ -71,13 +72,13 @@
         /* === ITINERARY CARDS === */
         .timeline-item {
             padding: 0;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             border: 1px solid #eee;
             background: white;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
             position: relative;
         }
         
@@ -125,6 +126,7 @@
             letter-spacing: 0.5px;
         }
 
+        /* Activity List Styles */
         .activity-list {
             list-style: none;
             padding: 0;
@@ -134,7 +136,7 @@
         .activity-list li {
             position: relative;
             padding-left: 25px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 1.05rem;
         }
 
@@ -145,6 +147,32 @@
             color: var(--chile-red);
             font-weight: bold;
         }
+
+        /* Sub-list for road trip stops */
+        .road-trip-stops {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stop-card {
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .stop-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .stop-card h4 { margin: 0 0 5px 0; color: var(--primary); }
 
         /* Links */
         a.landmark-link {
@@ -161,6 +189,17 @@
         }
 
         h2 { border-bottom: 3px solid var(--chile-red); display: inline-block; padding-bottom: 5px; margin-bottom: 2rem; }
+
+        /* === MOBILE OPTIMIZATION === */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            header { padding: 2rem 1rem; }
+            header h1 { font-size: 1.8rem; }
+            #map { height: 350px; margin-bottom: 2rem; }
+            .card-img { height: 200px; }
+            .card-content { padding: 1.2rem; }
+            .card-content h3 { font-size: 1.5rem; }
+        }
 
     </style>
 </head>
@@ -231,16 +270,39 @@
         </div>
 
         <div id="day7" class="timeline-item" data-country="arg">
-            <img src="https://loremflickr.com/800/400/ruta-40,patagonia" alt="Patagonia Road" class="card-img">
+            <img src="https://loremflickr.com/800/400/route-40,patagonia" alt="Ruta 40" class="card-img">
             <div class="card-content">
-                <span class="tag">Border Crossing</span>
-                <h3>Day 7: Crossing to Argentina</h3>
-                <p>Leave Chile behind and enter the vast Argentine steppe.</p>
+                <span class="tag">Road Trip</span>
+                <h3>Day 7: The Road to Sunset</h3>
+                <p>Transfer to Argentina and start the legendary drive north on Ruta 40. We've added 3 "off the beaten path" stops to break up the drive.</p>
+                
                 <ul class="activity-list">
-                    <li>Bus from Puerto Natales to <strong>El Calafate</strong> (5 hours).</li>
-                    <li>Pick up rental car at the bus station.</li>
-                    <li>Drive the legendary <a href="https://en.wikipedia.org/wiki/Ruta_40" class="landmark-link" target="_blank">Ruta 40</a> north.</li>
-                    <li>Arrive in <strong>El Chaltén</strong> just in time for sunset over the Fitz Roy range.</li>
+                    <li>08:00 AM: Bus from Puerto Natales to El Calafate (5 hours).</li>
+                    <li>02:00 PM: Pick up rental car in El Calafate.</li>
+                </ul>
+
+                <div class="road-trip-stops">
+                    <div class="stop-card">
+                        <img src="https://loremflickr.com/300/150/cave-painting,rock" alt="Walichu Caves">
+                        <h4>1. Punta Walichu (3:30 PM)</h4>
+                        <p>Ancient cave paintings right on the shore of Lake Argentino. A quiet archeological site most tourists miss. <a href="https://patagonia-argentina.com/en/punta-walichu/" class="landmark-link" target="_blank">Read More</a></p>
+                    </div>
+
+                    <div class="stop-card">
+                        <img src="https://loremflickr.com/300/150/old-house,patagonia" alt="La Leona">
+                        <h4>2. Parador La Leona (5:30 PM)</h4>
+                        <p>Historic roadhouse where Butch Cassidy hid out. Mandatory stop for coffee and their famous lemon pie. <a href="https://www.hoteldecampolaleona.com.ar/" class="landmark-link" target="_blank">Visit Site</a></p>
+                    </div>
+
+                    <div class="stop-card">
+                        <img src="https://loremflickr.com/300/150/road,mountains" alt="Fitz Roy Road">
+                        <h4>3. Mirador Viedma (7:30 PM)</h4>
+                        <p>The "Instagram Spot." As you round the lake, Mt. Fitz Roy explodes into view. Perfect lighting in the evening.</p>
+                    </div>
+                </div>
+
+                <ul class="activity-list">
+                    <li><strong>09:30 PM:</strong> Arrive in <strong>El Chaltén</strong> for a late dinner and sunset (it stays light until 10 PM!).</li>
                 </ul>
             </div>
         </div>
@@ -331,6 +393,9 @@
             { id: "day1", title: "Puerto Natales", lat: -51.7267, lng: -72.5068, type: "city" },
             { id: "day2", title: "W Trek", lat: -50.9423, lng: -72.9368, type: "trek" },
             { id: "day7", title: "El Calafate", lat: -50.3379, lng: -72.2648, type: "city" },
+            { id: "day7", title: "Punta Walichu", lat: -50.3167, lng: -72.2000, type: "stop" }, /* New Marker */
+            { id: "day7", title: "La Leona", lat: -49.8167, lng: -72.0500, type: "stop" }, /* New Marker */
+            { id: "day7", title: "Mirador Viedma", lat: -49.6000, lng: -72.5000, type: "stop" }, /* New Marker */
             { id: "day8", title: "El Chaltén", lat: -49.3305, lng: -72.8817, type: "hike" },
             { id: "day10", title: "Perito Moreno", lat: -50.4690, lng: -73.0299, type: "ice" },
             { id: "day11", title: "Buenos Aires", lat: -34.6037, lng: -58.3816, type: "city" }
@@ -341,7 +406,8 @@
             city: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
             hike: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
             trek: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-            ice: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+            ice: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png",
+            stop: "http://maps.google.com/mapfiles/ms/icons/orange-dot.png" /* Orange marker for road trip stops */
         };
 
         const infoWindow = new google.maps.InfoWindow();
