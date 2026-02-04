@@ -70,7 +70,7 @@
 
         /* === ITINERARY CARDS === */
         .timeline-item {
-            padding: 0; /* Remove padding to let image flush */
+            padding: 0;
             margin-bottom: 3rem;
             border: 1px solid #eee;
             background: white;
@@ -81,7 +81,6 @@
             position: relative;
         }
         
-        /* Left colored border using pseudo-element */
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -102,7 +101,6 @@
             border-color: var(--primary);
         }
 
-        /* Card Image */
         .card-img {
             width: 100%;
             height: 300px;
@@ -110,9 +108,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* Card Content */
         .card-content { padding: 2rem; }
-
         .card-content h3 { margin-top: 0; color: var(--primary); font-size: 1.8rem; }
         
         .tag {
@@ -156,10 +152,12 @@
             text-decoration: none;
             border-bottom: 2px solid var(--accent);
             font-weight: 600;
+            transition: all 0.2s;
         }
         a.landmark-link:hover {
             background-color: var(--accent);
             color: white;
+            border-bottom: none;
         }
 
         h2 { border-bottom: 3px solid var(--chile-red); display: inline-block; padding-bottom: 5px; margin-bottom: 2rem; }
@@ -203,16 +201,16 @@
         </div>
 
         <div id="day1" class="timeline-item" data-country="chi">
-            <img src="https://loremflickr.com/800/400/andes,mountains" alt="Andes Mountains" class="card-img">
+            <img src="https://loremflickr.com/800/400/puerto-natales,chile" alt="Puerto Natales" class="card-img">
             <div class="card-content">
                 <span class="tag">Transit</span>
                 <h3>Day 1: Welcome to Chile</h3>
                 <p>Land in Santiago and immediately head south to Patagonia.</p>
                 <ul class="activity-list">
                     <li>Land in <a href="https://en.wikipedia.org/wiki/Arturo_Merino_Ben%C3%ADtez_International_Airport" class="landmark-link" target="_blank">Santiago (SCL)</a>.</li>
-                    <li>Connect to domestic flight to <strong>Puerto Natales</strong>.</li>
+                    <li>Connect to domestic flight to <a href="https://turismoregio.cl/region-de-magallanes/provincia-de-ultima-esperanza/puerto-natales/" class="landmark-link" target="_blank">Puerto Natales</a>.</li>
                     <li>Check into your hostel/hotel and rent trekking gear (poles, stove, sleeping bag).</li>
-                    <li>Attend the mandatory <a href="https://en.wikipedia.org/wiki/Torres_del_Paine_National_Park" class="landmark-link" target="_blank">W Trek Briefing</a>.</li>
+                    <li>Attend the mandatory <a href="https://parquesnacionales.cl/parques/parque-nacional-torres-del-paine/" class="landmark-link" target="_blank">W Trek Briefing</a>.</li>
                 </ul>
             </div>
         </div>
@@ -227,13 +225,13 @@
                     <li><strong>Hike:</strong> The iconic <a href="https://en.wikipedia.org/wiki/Cordillera_del_Paine" class="landmark-link" target="_blank">Las Torres (The Towers)</a> viewpoint.</li>
                     <li><strong>Explore:</strong> The hanging glaciers of the <strong>French Valley</strong>.</li>
                     <li><strong>Marvel:</strong> The massive blue wall of <a href="https://en.wikipedia.org/wiki/Grey_Glacier" class="landmark-link" target="_blank">Glacier Grey</a>.</li>
-                    <li><strong>Sleep:</strong> In Refugios (mountain huts) or campsites like Paine Grande and Chileno.</li>
+                    <li><strong>Logistics:</strong> Book your campsites via <a href="https://www.vertice.travel/" class="landmark-link" target="_blank">Vertice</a> (West side) and <a href="https://lastorres.com/en/" class="landmark-link" target="_blank">Las Torres</a> (East side).</li>
                 </ul>
             </div>
         </div>
 
         <div id="day7" class="timeline-item" data-country="arg">
-            <img src="https://loremflickr.com/800/400/road,patagonia" alt="Patagonia Road" class="card-img">
+            <img src="https://loremflickr.com/800/400/ruta-40,patagonia" alt="Patagonia Road" class="card-img">
             <div class="card-content">
                 <span class="tag">Border Crossing</span>
                 <h3>Day 7: Crossing to Argentina</h3>
@@ -256,7 +254,7 @@
                 <ul class="activity-list">
                     <li>Hike to <a href="https://en.wikipedia.org/wiki/Laguna_de_los_Tres" class="landmark-link" target="_blank">Laguna de los Tres</a> (20km round trip).</li>
                     <li>Eat lunch at the cobalt blue alpine lake.</li>
-                    <li>Return to town for craft beer at <em>La Cervecería</em>.</li>
+                    <li>Return to town for craft beer at <a href="https://www.tripadvisor.com/Restaurant_Review-g316035-d1996500-Reviews-La_Cerveceria_Chalten-El_Chalten_Province_of_Santa_Cruz_Patagonia.html" class="landmark-link" target="_blank">La Cervecería</a> (Try the Bock!).</li>
                 </ul>
             </div>
         </div>
@@ -268,7 +266,7 @@
                 <h3>Day 9: Vertical or Chill</h3>
                 <p>Choose your own adventure day.</p>
                 <ul class="activity-list">
-                    <li><strong>Option A (Adrenaline):</strong> Multi-pitch rock climbing at <strong>Paredón de los Cóndores</strong>.</li>
+                    <li><strong>Option A (Adrenaline):</strong> Multi-pitch rock climbing at <a href="https://www.thecrag.com/en/climbing/argentina/el-chalten/paredon-de-los-condores" class="landmark-link" target="_blank">Paredón de los Cóndores</a>.</li>
                     <li><strong>Option B (Relaxed):</strong> Drive the gravel road to <a href="https://www.patagonia-argentina.com/en/lago-del-desierto/" class="landmark-link" target="_blank">Lago del Desierto</a>.</li>
                     <li>Visit <em>Chorrillo del Salto</em> waterfall.</li>
                 </ul>
@@ -291,7 +289,7 @@
         </div>
 
         <div id="day11" class="timeline-item" data-country="arg">
-            <img src="https://loremflickr.com/800/400/buenos-aires,obelisk" alt="Buenos Aires" class="card-img">
+            <img src="https://loremflickr.com/800/400/buenos-aires,steak" alt="Buenos Aires Steak" class="card-img">
             <div class="card-content">
                 <span class="tag">City & Culture</span>
                 <h3>Days 11-12: The Paris of South America</h3>
@@ -299,14 +297,14 @@
                 <ul class="activity-list">
                     <li>Walk the colorful streets of <a href="https://en.wikipedia.org/wiki/La_Boca" class="landmark-link" target="_blank">La Boca</a> (Caminito).</li>
                     <li>Visit the tomb of Evita Perón at <a href="https://en.wikipedia.org/wiki/Recoleta_Cemetery" class="landmark-link" target="_blank">Recoleta Cemetery</a>.</li>
-                    <li>Eat the world's best steak at <strong>Don Julio</strong> (book months ahead!).</li>
+                    <li>Eat the world's best steak at <a href="https://www.parrilladonjulio.com/" class="landmark-link" target="_blank">Don Julio</a> (Book 2 months ahead!).</li>
                     <li>Catch a late-night flight back to Chicago on Day 12.</li>
                 </ul>
             </div>
         </div>
 
          <div id="day13" class="timeline-item">
-            <img src="https://loremflickr.com/800/400/chicago" alt="Chicago" class="card-img">
+            <img src="https://loremflickr.com/800/400/chicago,skyline" alt="Chicago" class="card-img">
             <div class="card-content">
                 <span class="tag">Home</span>
                 <h3>Day 13: Welcome Home</h3>
