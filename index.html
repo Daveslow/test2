@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patagonia Reverse: Chile First</title>
+    <title>Patagonia Visual Guide</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -26,13 +26,13 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--chile-red), #c0392b); /* Chile Red Theme */
+            background: linear-gradient(135deg, var(--chile-red), #c0392b);
             color: white;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
         }
-        header h1 { margin: 0; }
-        header p { opacity: 0.9; font-size: 1.1rem; }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { opacity: 0.9; font-size: 1.2rem; margin-top: 10px; }
 
         nav {
             background: #fff;
@@ -49,7 +49,9 @@
             text-decoration: none;
             color: var(--primary);
             font-weight: 600;
+            transition: color 0.3s;
         }
+        nav a:hover { color: var(--chile-red); }
 
         .container {
             max-width: 1200px;
@@ -57,156 +59,285 @@
             padding: 2rem;
         }
 
-        /* === MAP STYLES === */
+        /* === MAP === */
         #map {
-            height: 650px;
+            height: 600px;
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             margin-bottom: 3rem;
         }
 
-        /* ITINERARY STYLES */
+        /* === ITINERARY CARDS === */
         .timeline-item {
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #ddd;
+            padding: 0; /* Remove padding to let image flush */
+            margin-bottom: 3rem;
+            border: 1px solid #eee;
             background: white;
-            border-radius: 0 8px 8px 0;
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
         
+        /* Left colored border using pseudo-element */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: #ccc;
+            z-index: 1;
+        }
+
+        .timeline-item[data-country="chi"]::before { background: var(--chile-red); }
+        .timeline-item[data-country="arg"]::before { background: var(--arg-blue); }
+
         .timeline-item.active {
-            border-left-color: var(--chile-red);
-            background-color: #fff5f5;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary);
         }
 
-        /* Differentiate Argentina items */
-        .timeline-item[data-country="arg"].active {
-            border-left-color: var(--arg-blue);
-            background-color: #f0f8ff;
+        /* Card Image */
+        .card-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
         }
 
+        /* Card Content */
+        .card-content { padding: 2rem; }
+
+        .card-content h3 { margin-top: 0; color: var(--primary); font-size: 1.8rem; }
+        
         .tag {
             display: inline-block;
-            background: #eee;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 5px;
+            background: #f8f9fa;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            border: 1px solid #eee;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .activity-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+        
+        .activity-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .activity-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--chile-red);
             font-weight: bold;
         }
 
-        h2 { border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; }
+        /* Links */
+        a.landmark-link {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 2px solid var(--accent);
+            font-weight: 600;
+        }
+        a.landmark-link:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        h2 { border-bottom: 3px solid var(--chile-red); display: inline-block; padding-bottom: 5px; margin-bottom: 2rem; }
 
     </style>
 </head>
 <body>
 
 <header>
-    <h1>The "Trek First" Route</h1>
-    <p>Chicago ✈️ Santiago ⛰️ W Trek 🚗 Road Trip 🍷 Buenos Aires ✈️ Chicago</p>
+    <h1>Patagonia Visual Journey</h1>
+    <p>Chicago ➔ Chile ➔ Argentina ➔ Chicago</p>
 </header>
 
 <nav>
-    <a href="#map">Interactive Map</a>
-    <a href="#itinerary">Day-by-Day Details</a>
+    <a href="#map">Trip Map</a>
+    <a href="#itinerary">Visual Itinerary</a>
 </nav>
 
 <div class="container">
     
     <section>
-        <h2>Route Visualization</h2>
-        <p>Zoom out to see the connections to North America.</p>
+        <h2>Route Map</h2>
         <div id="map"></div>
     </section>
 
     <section id="itinerary">
-        <h2>Detailed Itinerary</h2>
+        <h2>Day-by-Day Activities</h2>
 
         <div id="day0" class="timeline-item">
-            <h3>Day 0: The Long Haul</h3>
-            <span class="tag">Flight</span>
-            <p>Fly <strong>Chicago (ORD)</strong> to Santiago (SCL). Overnight flight.</p>
+            <img src="https://loremflickr.com/800/400/airport,airplane" alt="Flight" class="card-img">
+            <div class="card-content">
+                <span class="tag">Flight</span>
+                <h3>Day 0: The Departure</h3>
+                <p>Pack your bags for the end of the world. Today is entirely dedicated to travel.</p>
+                <ul class="activity-list">
+                    <li>Depart <strong>Chicago O'Hare (ORD)</strong> in the afternoon.</li>
+                    <li>Overnight flight to South America (approx 10-12 hours).</li>
+                    <li><em>Tip:</em> Drink plenty of water and try to sleep; you need energy for tomorrow.</li>
+                </ul>
+            </div>
         </div>
 
         <div id="day1" class="timeline-item" data-country="chi">
-            <h3>Day 1: Arrival in Chile</h3>
-            <span class="tag">Transit</span>
-            <p>Land in Santiago (AM). Connect to Puerto Natales (PNT). <br><em>Tip: If direct PNT flight is sold out, fly to Punta Arenas + Bus.</em></p>
+            <img src="https://loremflickr.com/800/400/andes,mountains" alt="Andes Mountains" class="card-img">
+            <div class="card-content">
+                <span class="tag">Transit</span>
+                <h3>Day 1: Welcome to Chile</h3>
+                <p>Land in Santiago and immediately head south to Patagonia.</p>
+                <ul class="activity-list">
+                    <li>Land in <a href="https://en.wikipedia.org/wiki/Arturo_Merino_Ben%C3%ADtez_International_Airport" class="landmark-link" target="_blank">Santiago (SCL)</a>.</li>
+                    <li>Connect to domestic flight to <strong>Puerto Natales</strong>.</li>
+                    <li>Check into your hostel/hotel and rent trekking gear (poles, stove, sleeping bag).</li>
+                    <li>Attend the mandatory <a href="https://en.wikipedia.org/wiki/Torres_del_Paine_National_Park" class="landmark-link" target="_blank">W Trek Briefing</a>.</li>
+                </ul>
+            </div>
         </div>
 
         <div id="day2" class="timeline-item" data-country="chi">
-            <h3>Days 2-6: The W Trek</h3>
-            <span class="tag" style="background:var(--chile-red); color:white;">Trek</span>
-            <p><strong>The Main Event:</strong> 5 Days backpacking Torres del Paine.
-            <br>• The Towers (Las Torres)
-            <br>• French Valley
-            <br>• Glacier Grey</p>
+            <img src="https://loremflickr.com/800/400/torres-del-paine" alt="Torres del Paine" class="card-img">
+            <div class="card-content">
+                <span class="tag" style="color:var(--chile-red); border-color:var(--chile-red);">The W Trek</span>
+                <h3>Days 2-6: Torres del Paine</h3>
+                <p>5 days of world-class backpacking through the granite spires.</p>
+                <ul class="activity-list">
+                    <li><strong>Hike:</strong> The iconic <a href="https://en.wikipedia.org/wiki/Cordillera_del_Paine" class="landmark-link" target="_blank">Las Torres (The Towers)</a> viewpoint.</li>
+                    <li><strong>Explore:</strong> The hanging glaciers of the <strong>French Valley</strong>.</li>
+                    <li><strong>Marvel:</strong> The massive blue wall of <a href="https://en.wikipedia.org/wiki/Grey_Glacier" class="landmark-link" target="_blank">Glacier Grey</a>.</li>
+                    <li><strong>Sleep:</strong> In Refugios (mountain huts) or campsites like Paine Grande and Chileno.</li>
+                </ul>
+            </div>
         </div>
 
         <div id="day7" class="timeline-item" data-country="arg">
-            <h3>Day 7: Border Crossing & Road Trip</h3>
-            <span class="tag">Bus/Drive</span>
-            <p>Bus from Natales to El Calafate (Argentina). Pick up rental car. Drive to <strong>El Chaltén</strong>.</p>
+            <img src="https://loremflickr.com/800/400/road,patagonia" alt="Patagonia Road" class="card-img">
+            <div class="card-content">
+                <span class="tag">Border Crossing</span>
+                <h3>Day 7: Crossing to Argentina</h3>
+                <p>Leave Chile behind and enter the vast Argentine steppe.</p>
+                <ul class="activity-list">
+                    <li>Bus from Puerto Natales to <strong>El Calafate</strong> (5 hours).</li>
+                    <li>Pick up rental car at the bus station.</li>
+                    <li>Drive the legendary <a href="https://en.wikipedia.org/wiki/Ruta_40" class="landmark-link" target="_blank">Ruta 40</a> north.</li>
+                    <li>Arrive in <strong>El Chaltén</strong> just in time for sunset over the Fitz Roy range.</li>
+                </ul>
+            </div>
         </div>
 
         <div id="day8" class="timeline-item" data-country="arg">
-            <h3>Day 8: Fitz Roy</h3>
-            <span class="tag">Hike</span>
-            <p>Hike Laguna de los Tres. Enjoy the comfort of a hotel bed after the trek.</p>
+            <img src="https://loremflickr.com/800/400/fitz-roy" alt="Fitz Roy" class="card-img">
+            <div class="card-content">
+                <span class="tag">Hiking</span>
+                <h3>Day 8: Mount Fitz Roy</h3>
+                <p>The trekking capital of Argentina offers its crown jewel today.</p>
+                <ul class="activity-list">
+                    <li>Hike to <a href="https://en.wikipedia.org/wiki/Laguna_de_los_Tres" class="landmark-link" target="_blank">Laguna de los Tres</a> (20km round trip).</li>
+                    <li>Eat lunch at the cobalt blue alpine lake.</li>
+                    <li>Return to town for craft beer at <em>La Cervecería</em>.</li>
+                </ul>
+            </div>
         </div>
 
         <div id="day9" class="timeline-item" data-country="arg">
-            <h3>Day 9: Climbing Option</h3>
-            <span class="tag" style="background:orange; color:white;">Climb</span>
-            <p>Multi-pitch climbing at <strong>Paredón de los Cóndores</strong> or chill at Lago del Desierto.</p>
+            <img src="https://loremflickr.com/800/400/climbing,rock" alt="Rock Climbing" class="card-img">
+            <div class="card-content">
+                <span class="tag" style="color:#e67e22; border-color:#e67e22;">Activity Choice</span>
+                <h3>Day 9: Vertical or Chill</h3>
+                <p>Choose your own adventure day.</p>
+                <ul class="activity-list">
+                    <li><strong>Option A (Adrenaline):</strong> Multi-pitch rock climbing at <strong>Paredón de los Cóndores</strong>.</li>
+                    <li><strong>Option B (Relaxed):</strong> Drive the gravel road to <a href="https://www.patagonia-argentina.com/en/lago-del-desierto/" class="landmark-link" target="_blank">Lago del Desierto</a>.</li>
+                    <li>Visit <em>Chorrillo del Salto</em> waterfall.</li>
+                </ul>
+            </div>
         </div>
 
         <div id="day10" class="timeline-item" data-country="arg">
-            <h3>Day 10: Glaciers to City</h3>
-            <span class="tag">Ice/Flight</span>
-            <p>Drive to Calafate. Visit <strong>Perito Moreno Glacier</strong>. Drop car. Fly Calafate (FTE) -> <strong>Buenos Aires (AEP)</strong>.</p>
+            <img src="https://loremflickr.com/800/400/perito-moreno,glacier" alt="Perito Moreno" class="card-img">
+            <div class="card-content">
+                <span class="tag">Glacier</span>
+                <h3>Day 10: Perito Moreno & Fly Out</h3>
+                <p>See one of the few advancing glaciers in the world.</p>
+                <ul class="activity-list">
+                    <li>Drive back to El Calafate (3 hours).</li>
+                    <li>Walk the boardwalks of <a href="https://en.wikipedia.org/wiki/Perito_Moreno_Glacier" class="landmark-link" target="_blank">Perito Moreno Glacier</a>.</li>
+                    <li>Listen to the "white thunder" of ice calving.</li>
+                    <li>Fly from El Calafate (FTE) to <strong>Buenos Aires (AEP)</strong>.</li>
+                </ul>
+            </div>
         </div>
 
         <div id="day11" class="timeline-item" data-country="arg">
-            <h3>Days 11-12: Buenos Aires</h3>
-            <span class="tag" style="background:var(--arg-blue); color:white;">Relax</span>
-            <p>Recovery time. Steak at <em>Don Julio</em>. Tango in San Telmo. Late night flight home on Day 12.</p>
+            <img src="https://loremflickr.com/800/400/buenos-aires,obelisk" alt="Buenos Aires" class="card-img">
+            <div class="card-content">
+                <span class="tag">City & Culture</span>
+                <h3>Days 11-12: The Paris of South America</h3>
+                <p>Decompress with red wine, steak, and tango.</p>
+                <ul class="activity-list">
+                    <li>Walk the colorful streets of <a href="https://en.wikipedia.org/wiki/La_Boca" class="landmark-link" target="_blank">La Boca</a> (Caminito).</li>
+                    <li>Visit the tomb of Evita Perón at <a href="https://en.wikipedia.org/wiki/Recoleta_Cemetery" class="landmark-link" target="_blank">Recoleta Cemetery</a>.</li>
+                    <li>Eat the world's best steak at <strong>Don Julio</strong> (book months ahead!).</li>
+                    <li>Catch a late-night flight back to Chicago on Day 12.</li>
+                </ul>
+            </div>
         </div>
 
-        <div id="day13" class="timeline-item">
-            <h3>Day 13: Home</h3>
-            <span class="tag">Flight</span>
-            <p>Arrive Chicago (ORD) in the morning.</p>
+         <div id="day13" class="timeline-item">
+            <img src="https://loremflickr.com/800/400/chicago" alt="Chicago" class="card-img">
+            <div class="card-content">
+                <span class="tag">Home</span>
+                <h3>Day 13: Welcome Home</h3>
+                <ul class="activity-list">
+                    <li>Arrive in Chicago (ORD) early morning.</li>
+                    <li>You survived Patagonia!</li>
+                </ul>
+            </div>
         </div>
+
     </section>
 </div>
 
 <script>
     function initMap() {
         const center = { lat: -40.0, lng: -70.0 };
-        
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 3, 
-            center: center,
-            mapId: "DEMO_MAP_ID",
+            zoom: 3, center: center, mapId: "DEMO_MAP_ID",
         });
 
-        // === DATA: LOCATIONS ===
         const locations = [
-            { id: "day0", title: "Chicago (ORD)", lat: 41.9742, lng: -87.9073, type: "home", desc: "Start/End" },
-            { id: "day1", title: "Santiago (SCL)", lat: -33.3898, lng: -70.7945, type: "city", desc: "Connection Hub" },
-            { id: "day1", title: "Puerto Natales", lat: -51.7267, lng: -72.5068, type: "city", desc: "Start: W Trek" },
-            { id: "day2", title: "Torres del Paine", lat: -50.9423, lng: -72.9368, type: "trek", desc: "5 Days Hiking" },
-            { id: "day7", title: "El Calafate", lat: -50.3379, lng: -72.2648, type: "city", desc: "Border Crossing / Car Rental" },
-            { id: "day8", title: "El Chaltén", lat: -49.3305, lng: -72.8817, type: "hike", desc: "Fitz Roy & Climbing" },
-            { id: "day10", title: "Perito Moreno", lat: -50.4690, lng: -73.0299, type: "ice", desc: "Glacier Visit" },
-            { id: "day11", title: "Buenos Aires", lat: -34.6037, lng: -58.3816, type: "city", desc: "End: Relax & Food" }
+            { id: "day0", title: "Chicago", lat: 41.9742, lng: -87.9073, type: "home" },
+            { id: "day1", title: "Santiago", lat: -33.3898, lng: -70.7945, type: "city" },
+            { id: "day1", title: "Puerto Natales", lat: -51.7267, lng: -72.5068, type: "city" },
+            { id: "day2", title: "W Trek", lat: -50.9423, lng: -72.9368, type: "trek" },
+            { id: "day7", title: "El Calafate", lat: -50.3379, lng: -72.2648, type: "city" },
+            { id: "day8", title: "El Chaltén", lat: -49.3305, lng: -72.8817, type: "hike" },
+            { id: "day10", title: "Perito Moreno", lat: -50.4690, lng: -73.0299, type: "ice" },
+            { id: "day11", title: "Buenos Aires", lat: -34.6037, lng: -58.3816, type: "city" }
         ];
 
-        // === ICONS ===
         const icons = {
             home: "http://maps.google.com/mapfiles/kml/shapes/airports.png",
             city: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
@@ -226,9 +357,6 @@
             });
 
             marker.addListener("click", () => {
-                infoWindow.setContent(`<strong>${loc.title}</strong><br>${loc.desc}`);
-                infoWindow.open(map, marker);
-                
                 const element = document.getElementById(loc.id);
                 if(element) {
                     document.querySelectorAll('.timeline-item').forEach(e => e.classList.remove('active'));
@@ -238,107 +366,26 @@
             });
         });
 
-        // === PATHS (REVERSED FLOW) ===
-        
-        // 1. FLIGHT: ORD -> SCL
-        const flightDown = [
-            { lat: 41.9742, lng: -87.9073 }, 
-            { lat: -33.3898, lng: -70.7945 } 
+        // Paths
+        const pathConfig = [
+            { path: [{lat: 41.9742, lng: -87.9073}, {lat: -33.3898, lng: -70.7945}], color: "#e74c3c", dash: true }, // ORD-SCL
+            { path: [{lat: -33.3898, lng: -70.7945}, {lat: -51.7267, lng: -72.5068}], color: "#e74c3c", dash: true }, // SCL-PNT
+            { path: [{lat: -51.7267, lng: -72.5068}, {lat: -50.3379, lng: -72.2648}], color: "#34495e", dash: false }, // Bus
+            { path: [{lat: -50.3379, lng: -72.2648}, {lat: -49.3305, lng: -72.8817}], color: "#34495e", dash: false }, // Drive
+            { path: [{lat: -50.3379, lng: -72.2648}, {lat: -34.6037, lng: -58.3816}], color: "#3498db", dash: true }, // FTE-AEP
+            { path: [{lat: -34.6037, lng: -58.3816}, {lat: 41.9742, lng: -87.9073}], color: "#3498db", dash: true }  // EZE-ORD
         ];
-        new google.maps.Polyline({
-            path: flightDown,
-            geodesic: true,
-            strokeColor: "#e74c3c", // Red for "Down to Chile"
-            strokeOpacity: 0.6,
-            strokeWeight: 2,
-            icons: [{ icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 2 }, offset: '0', repeat: '20px' }],
-            map: map
-        });
 
-        // 2. FLIGHT: SCL -> Natales
-        const flightChile = [
-            { lat: -33.3898, lng: -70.7945 },
-            { lat: -51.7267, lng: -72.5068 } 
-        ];
-        new google.maps.Polyline({
-            path: flightChile,
-            geodesic: true,
-            strokeColor: "#e74c3c", 
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            icons: [{ icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 2 }, offset: '0', repeat: '20px' }],
-            map: map
-        });
-
-        // 3. TREK: W Trek Loop
-        const trekPath = [
-            { lat: -51.7267, lng: -72.5068 },
-            { lat: -50.9423, lng: -72.9368 },
-            { lat: -51.0, lng: -73.13 }
-        ];
-        new google.maps.Polyline({
-            path: trekPath,
-            geodesic: true,
-            strokeColor: "#e74c3c",
-            strokeWeight: 5,
-            map: map
-        });
-
-        // 4. BUS: Natales -> Calafate
-        const busPath = [
-            { lat: -51.7267, lng: -72.5068 },
-            { lat: -50.3379, lng: -72.2648 }
-        ];
-        new google.maps.Polyline({
-            path: busPath,
-            geodesic: true,
-            strokeColor: "#34495e", // Dark Blue/Grey for Road
-            strokeOpacity: 0.8,
-            strokeWeight: 4,
-            map: map
-        });
-
-        // 5. DRIVE: Calafate <-> Chalten
-        const drivePath = [
-            { lat: -50.3379, lng: -72.2648 },
-            { lat: -49.3305, lng: -72.8817 }
-        ];
-        new google.maps.Polyline({
-            path: drivePath,
-            geodesic: true,
-            strokeColor: "#34495e",
-            strokeWeight: 4,
-            map: map
-        });
-
-        // 6. FLIGHT: Calafate -> Buenos Aires
-        const flightArg = [
-            { lat: -50.3379, lng: -72.2648 },
-            { lat: -34.6037, lng: -58.3816 }
-        ];
-        new google.maps.Polyline({
-            path: flightArg,
-            geodesic: true,
-            strokeColor: "#3498db", // Blue for Argentina Flight
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            icons: [{ icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 2 }, offset: '0', repeat: '20px' }],
-            map: map
-        });
-
-        // 7. FLIGHT: BA -> Chicago
-        const flightHome = [
-            { lat: -34.6037, lng: -58.3816 },
-            { lat: 41.9742, lng: -87.9073 }
-        ];
-        new google.maps.Polyline({
-            path: flightHome,
-            geodesic: true,
-            strokeColor: "#3498db",
-            strokeOpacity: 0.5,
-            strokeWeight: 2,
-            icons: [{ icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 2 }, offset: '0', repeat: '20px' }],
-            map: map
+        pathConfig.forEach(p => {
+            new google.maps.Polyline({
+                path: p.path,
+                geodesic: true,
+                strokeColor: p.color,
+                strokeOpacity: 0.7,
+                strokeWeight: 3,
+                icons: p.dash ? [{ icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, scale: 2 }, offset: '0', repeat: '20px' }] : [],
+                map: map
+            });
         });
     }
 </script>
