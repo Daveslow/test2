@@ -148,15 +148,15 @@
             font-weight: bold;
         }
 
-        /* Sub-list for road trip stops */
-        .road-trip-stops {
+        /* Sub-list for road trip/restaurant stops */
+        .grid-options {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
 
-        .stop-card {
+        .option-card {
             background: #f9f9f9;
             border: 1px solid #eee;
             border-radius: 8px;
@@ -164,7 +164,7 @@
             font-size: 0.95rem;
         }
         
-        .stop-card img {
+        .option-card img {
             width: 100%;
             height: 120px;
             object-fit: cover;
@@ -172,7 +172,7 @@
             margin-bottom: 10px;
         }
         
-        .stop-card h4 { margin: 0 0 5px 0; color: var(--primary); }
+        .option-card h4 { margin: 0 0 5px 0; color: var(--primary); }
 
         /* Links */
         a.landmark-link {
@@ -270,7 +270,7 @@
         </div>
 
         <div id="day7" class="timeline-item" data-country="arg">
-            <img src="https://loremflickr.com/800/400/route-40,patagonia" alt="Ruta 40" class="card-img">
+            <img src="https://loremflickr.com/800/400/ruta-40,patagonia" alt="Ruta 40" class="card-img">
             <div class="card-content">
                 <span class="tag">Road Trip</span>
                 <h3>Day 7: The Road to Sunset</h3>
@@ -281,20 +281,18 @@
                     <li>02:00 PM: Pick up rental car in El Calafate.</li>
                 </ul>
 
-                <div class="road-trip-stops">
-                    <div class="stop-card">
+                <div class="grid-options">
+                    <div class="option-card">
                         <img src="https://loremflickr.com/300/150/cave-painting,rock" alt="Walichu Caves">
                         <h4>1. Punta Walichu (3:30 PM)</h4>
                         <p>Ancient cave paintings right on the shore of Lake Argentino. A quiet archeological site most tourists miss. <a href="https://patagonia-argentina.com/en/punta-walichu/" class="landmark-link" target="_blank">Read More</a></p>
                     </div>
-
-                    <div class="stop-card">
+                    <div class="option-card">
                         <img src="https://loremflickr.com/300/150/old-house,patagonia" alt="La Leona">
                         <h4>2. Parador La Leona (5:30 PM)</h4>
                         <p>Historic roadhouse where Butch Cassidy hid out. Mandatory stop for coffee and their famous lemon pie. <a href="https://www.hoteldecampolaleona.com.ar/" class="landmark-link" target="_blank">Visit Site</a></p>
                     </div>
-
-                    <div class="stop-card">
+                    <div class="option-card">
                         <img src="https://loremflickr.com/300/150/road,mountains" alt="Fitz Roy Road">
                         <h4>3. Mirador Viedma (7:30 PM)</h4>
                         <p>The "Instagram Spot." As you round the lake, Mt. Fitz Roy explodes into view. Perfect lighting in the evening.</p>
@@ -355,12 +353,32 @@
             <div class="card-content">
                 <span class="tag">City & Culture</span>
                 <h3>Days 11-12: The Paris of South America</h3>
-                <p>Decompress with red wine, steak, and tango.</p>
+                <p>Decompress with world-class wine, steak, and speakeasies. Here are your curated picks.</p>
+                
+                <h4>🥩 Dinner Reservations</h4>
+                <div class="grid-options">
+                    <div class="option-card">
+                        <img src="https://loremflickr.com/300/150/steak,grill" alt="Don Julio">
+                        <h4>Don Julio</h4>
+                        <p>The most famous steakhouse in the world. Booking required 2 months out. <a href="https://www.parrilladonjulio.com/" class="landmark-link" target="_blank">Book Here</a></p>
+                    </div>
+                    <div class="option-card">
+                        <img src="https://loremflickr.com/300/150/restaurant,buenos-aires" alt="El Preferido">
+                        <h4>El Preferido de Palermo</h4>
+                        <p>Trendy, historic "bodegón" with amazing milanesas. Same owners as Don Julio. <a href="https://guide.michelin.com/en/ciudad-autonoma-de-buenos-aires/buenos-aires/restaurant/el-preferido-de-palermo" class="landmark-link" target="_blank">See Guide</a></p>
+                    </div>
+                    <div class="option-card">
+                        <img src="https://loremflickr.com/300/150/meat,plate" alt="La Cabrera">
+                        <h4>La Cabrera</h4>
+                        <p>The "maximalist" steakhouse. Famous for huge portions and 10+ side dishes. <a href="https://www.lacabrera.com.ar/" class="landmark-link" target="_blank">Book Here</a></p>
+                    </div>
+                </div>
+
+                <h4>🍸 Bars & Cafes</h4>
                 <ul class="activity-list">
-                    <li>Walk the colorful streets of <a href="https://en.wikipedia.org/wiki/La_Boca" class="landmark-link" target="_blank">La Boca</a> (Caminito).</li>
-                    <li>Visit the tomb of Evita Perón at <a href="https://en.wikipedia.org/wiki/Recoleta_Cemetery" class="landmark-link" target="_blank">Recoleta Cemetery</a>.</li>
-                    <li>Eat the world's best steak at <a href="https://www.parrilladonjulio.com/" class="landmark-link" target="_blank">Don Julio</a> (Book 2 months ahead!).</li>
-                    <li>Catch a late-night flight back to Chicago on Day 12.</li>
+                    <li><strong>Speakeasy:</strong> <a href="https://www.floreriaatlantico.com.ar/" class="landmark-link" target="_blank">Florería Atlántico</a>. One of the world's best bars, hidden beneath a flower shop in Retiro.</li>
+                    <li><strong>Cocktails:</strong> <a href="https://www.instagram.com/presidentebar/" class="landmark-link" target="_blank">Presidente Bar</a>. Upscale, library-themed bar in Recoleta.</li>
+                    <li><strong>Coffee:</strong> <a href="https://www.instagram.com/cuervocafe/" class="landmark-link" target="_blank">Cuervo Café</a>. The best modern flat white in Palermo.</li>
                 </ul>
             </div>
         </div>
@@ -393,9 +411,9 @@
             { id: "day1", title: "Puerto Natales", lat: -51.7267, lng: -72.5068, type: "city" },
             { id: "day2", title: "W Trek", lat: -50.9423, lng: -72.9368, type: "trek" },
             { id: "day7", title: "El Calafate", lat: -50.3379, lng: -72.2648, type: "city" },
-            { id: "day7", title: "Punta Walichu", lat: -50.3167, lng: -72.2000, type: "stop" }, /* New Marker */
-            { id: "day7", title: "La Leona", lat: -49.8167, lng: -72.0500, type: "stop" }, /* New Marker */
-            { id: "day7", title: "Mirador Viedma", lat: -49.6000, lng: -72.5000, type: "stop" }, /* New Marker */
+            { id: "day7", title: "Punta Walichu", lat: -50.3167, lng: -72.2000, type: "stop" },
+            { id: "day7", title: "La Leona", lat: -49.8167, lng: -72.0500, type: "stop" },
+            { id: "day7", title: "Mirador Viedma", lat: -49.6000, lng: -72.5000, type: "stop" },
             { id: "day8", title: "El Chaltén", lat: -49.3305, lng: -72.8817, type: "hike" },
             { id: "day10", title: "Perito Moreno", lat: -50.4690, lng: -73.0299, type: "ice" },
             { id: "day11", title: "Buenos Aires", lat: -34.6037, lng: -58.3816, type: "city" }
@@ -407,7 +425,7 @@
             hike: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
             trek: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
             ice: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png",
-            stop: "http://maps.google.com/mapfiles/ms/icons/orange-dot.png" /* Orange marker for road trip stops */
+            stop: "http://maps.google.com/mapfiles/ms/icons/orange-dot.png"
         };
 
         const infoWindow = new google.maps.InfoWindow();
